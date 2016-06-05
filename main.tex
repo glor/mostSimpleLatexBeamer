@@ -1,0 +1,55 @@
+\documentclass{beamer} 
+
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+%\usepackage{xcolor}
+\usepackage{tikz}
+% needed for substracting coords and coord merging
+\usetikzlibrary{calc}
+
+% use checkmark and xmark; requires amssymb
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+\setbeamertemplate{frametitle}{%
+  \tikz[remember picture,overlay]{
+  	% invisible anchor for frame title and placeholder
+    \node(a)[rectangle,minimum width=.25cm,minimum height=1cm,anchor=north west]at(current page.north west){};
+    \node[anchor=west]at(a.east){\insertframetitle};
+    % -| merge the y from first coord with x from second; there is |-; (see 13.3 of the 2.10 tikz manual)
+    \draw[blue,line width=.5mm](a.south west)--(a.south west -| current page.east); %+(10,0)
+  }
+  \vskip.5cm % space between the frame title and content
+}
+
+\setbeamertemplate{footline}{
+  \tikz[overlay,remember picture]{
+  	% page numbering
+    \node[anchor=south east]at($(current page.south east)+(-.1,.1)$){\large\thepage};
+  }
+}
+
+%disable navigation symbols
+\beamertemplatenavigationsymbolsempty 
+
+\author{Lorenz Glißmann} 
+\title{My most simple \LaTeX{} Beamer Theme}
+\institute{Universität Göttingen}
+\date{\today}
+
+\begin{document}
+\setcounter{page}{0}
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\input{content.tex}
+
+\input{content2.tex}
+
+
+\end{document}
