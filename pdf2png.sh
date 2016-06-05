@@ -1,3 +1,3 @@
 #!/bin/sh
 # requires ImageMagick
-convert -density 400 example.pdf example.png
+convert -density 200 example.pdf example.png
